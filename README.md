@@ -1,59 +1,124 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Locadora de Carros
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplicação web desenvolvida em **Laravel** para gestão de uma **locadora de veículos**.  
+O sistema permite cadastrar marcas, modelos, carros, clientes e realizar o controle de locações, incluindo regras de negócio básicas (como impedir que um carro seja alugado em duas locações abertas ao mesmo tempo).
 
-## About Laravel
+Este projeto foi desenvolvido como trabalho prático para aplicar os conhecimentos adquiridos durante o curso **"Desenvolvimento Web Avançado com PHP, Laravel e Vue.JS"**, incluindo:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Laravel (rotas, controllers, models, migrations, Blade)
+- Organização de CRUDs
+- Validações
+- Regras de negócio simples
+- Layout básico com Bootstrap
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠 Tecnologias utilizadas
 
-## Learning Laravel
+- **PHP** 8.4  
+- **Laravel** 12.44  
+- **Composer** para gerenciamento de dependências  
+- **SQLite** para banco de dados (ambiente de desenvolvimento)  
+- **Blade** como engine de views  
+- **Bootstrap 5** para layout básico e responsivo  
+- **Bootstrap Icons** para ícones no menu lateral  
+- **jQuery** + **jQuery Mask Plugin** para máscaras de campos (CPF, telefone, placa)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 📦 Requisitos para executar o projeto
 
-## Laravel Sponsors
+Antes de começar, você precisa ter instalado na sua máquina:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- [PHP 8.4](https://www.php.net/)
+- [Composer](https://getcomposer.org/)
+- [Git](https://git-scm.com/) (para clonar o repositório)
 
-### Premium Partners
+Opcionalmente, para usar outro banco de dados (MySQL, PostgreSQL, etc.), você precisará ter o serviço do respectivo banco rodando e configurar o `.env` de acordo.  
+Neste projeto, foi utilizado **SQLite** pela simplicidade.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 📥 Instalação e configuração
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 1. Clonar o repositório
 
-## Code of Conduct
+```bash
+git clone https://github.com/AnaCarolinaNeves/locadora-carros.git
+cd locadora-carros
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 2. Instalar as dependências do PHP
 
-## Security Vulnerabilities
+```bash
+composer install
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 3. Criar o arquivo .env
 
-## License
+```bash
+cp .env.example .env
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 4. Configurar o banco de dados (SQLite)
+
+```bash
+touch database/database.sqlite
+```
+No arquivo .env, configure:
+```bash
+DB_CONNECTION=sqlite
+DB_DATABASE=./database/database.sqlite
+DB_FOREIGN_KEYS=true
+```
+
+### 5. Rodar as migrations
+
+```bash
+php artisan migrate
+```
+Se tudo estiver certo, as tabelas padrão do Laravel e as tabelas da aplicação (marcas, modelos, carros, clientes, locações) serão criadas.
+
+---
+
+## ▶️ Executando a aplicação
+
+Após a instalação e configuração:
+
+```bash
+php artisan serve
+```
+Acesse no navegador:
+
+```bash
+http://127.0.0.1:8000
+```
+Você será redirecionado para o **Dashboard** da aplicação.
+
+---
+
+## 🧪 Como testar rapidamente
+
+1. **Criar algumas marcas e modelos**
+   - Ex.: Marca: **Fiat**, Modelo: **Uno**
+   - Ex.: Marca: **Volkswagen**, Modelo: **Gol**
+
+2. **Cadastrar alguns carros**
+   - Ex.: Placa **ABC-1234**, Modelo **Uno**
+   - Ex.: Placa **XYZ-5678**, Modelo **Gol**
+
+3. **Cadastrar clientes**
+   - Preencher **nome**, **CPF**, **e-mail** e **telefone**
+
+4. **Criar locações**
+   - Escolher um **cliente** e um **carro**
+   - Definir datas de **retirada** e **devolução**
+   - Informar **valor da diária**
+   - Salvar com status **aberta**
+
+5. **Concluir locação**
+   - Na tela de listagem de locações (`/locacoes`), clicar em **Concluir**
+   - Verificar se:
+     - Status da locação mudou para **finalizada**
+     - Carro voltou para **disponível**
+     - Dashboard foi atualizado (**faturamento**, **locações finalizadas**, etc.)
